@@ -38,26 +38,34 @@ const MovieList = (props) => {
     }
   }, [props.query]);
 
+    const componentDidUpdate = async prevProps => {
+    if (prevProps.searchString !== this.props.searchString) {
+    if (this.props.searchString === "") {
+      this.setState({ error: false, searchResults: [] });
+    } else {
+       this.fetchSearchResult();
+    }
+   }
+  };
+
   return (
     <>
       <h3>{props.header}</h3>
       <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-4 row-cols-xl-6 mb-4 text-center">
-        {props.loading
-          ? [...Array(6).keys()].map((index) => (
-              <div className="spinner-container" key={index}>
-                <Spinner animation="border" variant="light" />
-              </div>
-            ))
-          : props.movies &&
-            props.movies.map((movie) => (
-              <SingleMovie
-                data={movie}
-                key={movie.imdbID}
-                selectedId={props.selectedId}
-                changeSelectedId={props.changeSelectedId}
-              />
-            ))}
-        {results.map((movie) => (
+        {props.loading && [...Array(4).keys()].map((index) => (
+          <div className="spinner-container" key={index}>
+            <Spinner animation="border" variant="light" />
+          </div>
+        ))}
+        {props.movies && props.movies.map((movie) => (
+        <SingleMovie
+            data={movie}
+            key={movie.imdbID}
+            selectedId={props.selectedId}
+            changeSelectedId={props.changeSelectedId}
+        />
+        ))}
+        {results.map(movie => (
           <SingleMovie
             data={movie}
             key={movie.imdbID}

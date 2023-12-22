@@ -11,3 +11,28 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.row{
+  justify-content: space-between;
+  box-sizing: unset;
+}
+
+#bodycontainer{
+  background-color: black;
+  color: white;
+}
+
+.mb-2 {
+  margin-left: 2%;
+  margin-right: 2%;
+  padding: 1%;
+  border: 3px solid ;
+  transition: transform 0.5s ease-in-out, border 0.5s ease-in-out;
+}
+
+
+.mb-2:hover {
+  transform: scale(1.3);
+  border-color: transparent; 
+}
+

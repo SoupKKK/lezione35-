@@ -7,8 +7,9 @@ const MyNavbar = ({ showSearchResult }) => {
   const location = useLocation();
 
   const searchStringHandler = (e) => {
-    if (e.keyCode === 13) {
-        showSearchResult(searchString);
+    if (e.key === "Enter") {
+      e.preventDefault();
+      showSearchResult(searchString.trim());
     } else {
         setSearchString(e.currentTarget.value);
     }
@@ -27,7 +28,7 @@ const MyNavbar = ({ showSearchResult }) => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Link to="/">
+          <Link to="http://localhost:3002">
             <div
               className={
                 "nav-link font-weight-bold" +
@@ -37,7 +38,7 @@ const MyNavbar = ({ showSearchResult }) => {
               Home
             </div>
           </Link>
-          <Link to="/tv-shows">
+          <Link to="/">
             <div
               className={
                 "nav-link font-weight-bold" +
